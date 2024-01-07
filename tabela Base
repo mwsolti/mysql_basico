@@ -1,0 +1,39 @@
+
+-> Banco -> Pessoa
+
+
+-> Tabelas
+
+		- Tabela DadosPessoa
+				
+				- ID_PESSOA -> INT -> NOT NULL -> AI(AUTO INCREMENT)
+				- NOME_PESSOA -> VARCHAR(100) -> NOT NULL
+				- SOBRENOME_PESSOA -> VACHAR(100) -> NOT NULL
+				- IDADE -> INT -> NOT NULL 
+		
+		- Tabela DadosPessoaEndereco
+				
+				- ID_ENDERECO -> INT -> NOT NULL -> AI(AUTO INCREMENT)
+				- RUA -> VARCHAR(500) -> NOT NULL
+				- CEP -> VARCHAR(10) -> NOT NULL
+				- NUMERO -> INT NOT NULL
+				- BAIRRO -> VARCHAR(100) -> NOT NULL
+				- CIDADE -> VARCHAR(100) -> NOT NULL
+				- UF -> VARCHAR(2) -> NOT NULL
+				- PAIS -> VARCHAR(100) -> NOT NULL
+				- COMPLEMENTO -> VHARCHAR(500) -> NULL
+				- ID_PESSOA -> INT -> NOT NULL
+
+
+		- Tabela DadosPessoaLogin
+
+				ID_LOGIN -> INT -> NOT NULL -> AI(AUTO INCREMENT)
+]				LOGIN -> VARTCHAR(20) -> NOT NULL
+				SENHA -> VARCHAR(16) -> NOT NULL
+				ID_PESSOA -> INT -> NOT NULL
+		
+
+
+
+
+
