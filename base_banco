@@ -10,4 +10,16 @@ marca varchar(50) Not Null
 modelo varchar(50) Not Null
 placa varchar(7) Not Null
 
+tb_tipo_estacionamento
+id_tipo_estacionamento int AI Not Null
+valor_tipo_estacionamento Decimal Not Null
+
+tb_fatura_estacionamento
+id_fatura int AI Not Null
+id_tipo_estacionamento int Not Null
+qt_tempo_estacionado int not null
+valor_total decimal  
+
+
+
 
