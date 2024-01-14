@@ -1,0 +1,13 @@
+tb_carros_estacionados
+id_estacionamento int AI Not Null
+id_carro int Not Null
+dt_hora_entrada date Not Null
+dt_hora_saida date 
+
+tb_carros_cadastrados
+id_carro int AI Not Null
+marca varchar(50) Not Null
+modelo varchar(50) Not Null
+placa varchar(7) Not Null
+
+
