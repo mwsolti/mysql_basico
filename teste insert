@@ -1,0 +1,20 @@
+
+
+
+
+INSERT INTO tb_teste (campo_1,campo_2)
+VALUES ("Valor 1", "Valor 2");
+
+INSERT INTO tb_teste (campo_1)
+VALUES ("Valor teste campo não nulo");
+
+UPDATE tb_teste
+SET campo_1 = "Valor 69"
+WHERE id_teste = 1;
+
+
+UPDATE tb_teste
+SET campo_2 = "Valor teste"
+WHERE id_teste = 2;
+
+select * from tb_teste;
