@@ -1,0 +1,13 @@
+Produto
+
+		-> id_produto
+		-> nome_produto
+		-> ds_produto
+
+
+
+Preco_produto
+	
+		-> id_preco
+		-> id_produto
+		-> preco_produto
