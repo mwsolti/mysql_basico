@@ -1,0 +1,129 @@
+1 - Criar tabelas
+		-> carros_estacionamento
+			id_carro int not null AI pk
+			marca varchar(100) not null
+			modelo varchar(100) not null
+			obs varchar(100) null
+		
+		-> carros_estacionados
+			id_carro_estacionado int not null pk AI
+			data_estacionamento date not null
+			id_carro int not null
+
+		-> carros_ja_estacionados
+			id_carro_ja_estacionado int not null pk AI
+			id_carro int not null
+			data_saida date not null
+			obs varchar(100) 
+2 - Siga os passos a baixo com valores diferentes
+	faça 3 inserts			
+Isert 1
+
+	INSERT INTO `estacionamento`.`carros_estacionamento`
+	(`marca`,`modelo`,`obs`) VALUES ('Fiat', 'Uno','Com Escada');
+
+
+INsert 2
+	INSERT INTO `estacionamento`.`carros_estacionados`(`id_carro`)
+	VALUES (1);
+
+Select	
+	select	a.id_carro, a.marca,
+	        a.modelo, a.obs,
+	        b.data_estacionamento
+	from	carros_estacionamento a,
+		carros_estacionados b
+        
+        
+3 - seguindo logica anterior 
+
+		faça 2 inserts na tabela carros_ja_estacionados
+
+		faça um select que traga somente os carros ja estacionados
+
+		
+		select	a.id_carro,
+			a.marca,
+        		a.modelo,
+			a.obs,
+        		b.data_estacionamento
+		from	carros_estacionamento a,
+			carros_estacionados b
+		where  a.id_carro = b.id_carro
+        
+        
+
+
+
+		
+
+		CREATE TABLE `estacionamento`.`carros_estacionamento` (
+  `id_carro` INT NOT NULL AUTO_INCREMENT,
+  `marca` VARCHAR(100) NOT NULL,
+  `modelo` VARCHAR(100) NULL,
+  `obs` VARCHAR(100) NULL,
+  PRIMARY KEY (`id_carro`));
+
+
+CREATE TABLE `estacionamento`.`carros_estacionados` (
+  `id_carro_estacionado` INT NOT NULL AUTO_INCREMENT,
+  `data_estacionamento` TIMESTAMP NULL DEFAULT now(),
+  `id_carro` INT NOT NULL,
+  PRIMARY KEY (`id_carro_estacionado`));
+
+CREATE TABLE `estacionamento`.`carros_ja_estacionados` (
+  `id_carro_ja_estacionado` INT NOT NULL AUTO_INCREMENT,
+  `id_carro` INT NOT NULL,
+  `data_saida` TIMESTAMP NOT NULL DEFAULT now(),
+  `obs` VARCHAR(100) NULL,
+  PRIMARY KEY (`id_carro_ja_estacionado`));
+
+
+select	a.id_carro,
+		a.marca,
+        a.modelo,
+		a.obs,
+        b.data_estacionamento
+from	carros_estacionamento a,
+		carros_estacionados b
+
+
+UPDATE `estacionamento`.`carros_estacionamento` SET `obs` = 'Com Escada' WHERE (`id_carro` = '1');
+
+
+
+15:20:36	select id_carro,   marca,         modelo,   obs,        
+ data_estacionamento from carros_estacionamento,   
+carros_estacionados LIMIT 0, 1000	
+
+
+Error Code: 1052. Column 'id_carro' in field list is ambiguous	0.000 sec
+
+select	a.id_carro,
+		a.marca,
+		a.modelo,
+		a.obs as Descricao_de_Entrada,
+		b.data_estacionamento,
+        c.data_saida,
+        c.obs as Descricao_de_Saida
+from	carros_estacionamento a,
+		carros_estacionados b,
+        carros_ja_estacionados c
+where  	a.id_carro = b.id_carro
+and		a.id_carro = c.id_carro
+
+select * from carros_fora_estacionamento
+        
+
+		
+
+
+
+
+
+
+
+
+
+
+
