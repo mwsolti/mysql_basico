@@ -1,0 +1,10 @@
+
+Tabelas: tb_nome_tabela
+
+Campos: 
+	Numericos: nr_campo
+	Descricao: ds_campo
+	Data: dt_campo
+	Nome: nm_campo
+	Codigo(ID): cd_campo
+	Boolean: bl_campo (True ou False) ( 0 ou 1)
