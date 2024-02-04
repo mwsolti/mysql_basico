@@ -1,0 +1,44 @@
+Views;
+
+
+USE `media_aluno`;
+CREATE  OR REPLACE VIEW `vw_alunos` AS
+
+select	a.nm_aluno,
+	a.ds_obs,
+        a.nr_idade,
+        a.ds_serie,
+        n.nr_nota1 as Nota_1,
+		n.nr_nota2 as Nota_2,
+		n.nr_nota3 as Nota_3,
+        f.nr_faltas
+from	tb_cadastro_aluno a,
+		tb_notas_aluno n,
+        tb_frequencia f
+where	a.cd_aluno = n.cd_aluno
+and		a.cd_aluno = f.cd_aluno;
+
+USE `media_aluno`;
+CREATE  OR REPLACE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `vw_alunos` AS
+    SELECT 
+        `a`.`cd_aluno` AS `cd_aluno`,
+        `a`.`nm_aluno` AS `nm_aluno`,
+        `a`.`ds_obs` AS `ds_obs`,
+        `a`.`nr_idade` AS `nr_idade`,
+        `a`.`ds_serie` AS `ds_serie`,
+        `n`.`nr_nota1` AS `Nota_1`,
+        `n`.`nr_nota2` AS `Nota_2`,
+        `n`.`nr_nota3` AS `Nota_3`,
+        `f`.`nr_faltas` AS `nr_faltas`
+    FROM
+        ((`tb_cadastro_aluno` `a`
+        JOIN `tb_notas_aluno` `n`)
+        JOIN `tb_frequencia` `f`)
+    WHERE
+        ((`a`.`cd_aluno` = `n`.`cd_aluno`)
+            AND (`a`.`cd_aluno` = `f`.`cd_aluno`));
+
