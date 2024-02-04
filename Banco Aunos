@@ -1,0 +1,163 @@
+CREATE TABLE `media_aluno`.`tb_cadastro_aluno` (
+  `cd_aluno` INT NOT NULL AUTO_INCREMENT,
+  `nm_aluno` VARCHAR(200) NOT NULL,
+  `ds_email` VARCHAR(100) NULL,
+  `ds_obs` VARCHAR(500) NULL,
+  `nr_idade` INT NOT NULL,
+  `ds_serie` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`cd_aluno`));
+
+
+CREATE TABLE `media_aluno`.`tb_frequencia` (
+  `cd_frequencia` INT NOT NULL AUTO_INCREMENT,
+  `cd_aluno` INT NOT NULL,
+  `nr_faltas` INT NOT NULL,
+  PRIMARY KEY (`cd_frequencia`));
+
+CREATE TABLE `media_aluno`.`tb_notas_aluno` (
+  `cd_nota_aluno` INT NOT NULL AUTO_INCREMENT,
+  `cd_aluno` INT NOT NULL,
+  `nr_nota1` INT NOT NULL,
+  `nr_nota2` INT NOT NULL,
+  `nr_nota3` INT NOT NULL,
+  `ds_obs` VARCHAR(500) NULL,
+  PRIMARY KEY (`cd_nota_aluno`));
+
+
+INSERT INTO `media_aluno`.`tb_cadastro_aluno`
+(`nm_aluno`,
+`ds_obs`,
+`nr_idade`,
+`ds_serie`)
+VALUES
+(
+'Etevaldo Da Silva',
+'Veio de Outro PLaneta',
+99,
+'Quinta Serie');
+
+INSERT INTO `media_aluno`.`tb_cadastro_aluno`
+(`nm_aluno`,
+`ds_obs`,
+`nr_idade`,
+`ds_serie`)
+VALUES
+(
+'Gerosvildo Agilar',
+'Nome Estranho',
+13,
+'Sexta Serie');
+
+INSERT INTO `media_aluno`.`tb_cadastro_aluno`
+(`nm_aluno`,
+`ds_obs`,
+`nr_idade`,
+`ds_serie`)
+VALUES
+(
+'Antonio Nunes',
+'Que da um tapa na PErna',
+45,
+'Terceira Serie');
+
+cd_aluno	nm_aluno
+1		Etevaldo Da Silva
+2		Gerosvildo Agilar
+3		Antonio Nunes
+
+
+INSERT INTO `media_aluno`.`tb_frequencia`
+(
+`cd_aluno`,
+`nr_faltas`)
+VALUES (
+1,
+30);
+
+INSERT INTO `media_aluno`.`tb_frequencia`
+(
+`cd_aluno`,
+`nr_faltas`)
+VALUES (
+2,
+4);
+
+INSERT INTO `media_aluno`.`tb_frequencia`
+(
+`cd_aluno`,
+`nr_faltas`)
+VALUES (
+3,
+15);
+
+INSERT INTO `media_aluno`.`tb_notas_aluno`
+(`cd_aluno`,
+`nr_nota1`,
+`nr_nota2`,
+`nr_nota3`)
+VALUES(
+1,
+10,
+10,
+10);
+
+INSERT INTO `media_aluno`.`tb_notas_aluno`
+(`cd_aluno`,
+`nr_nota1`,
+`nr_nota2`,
+`nr_nota3`)
+VALUES(
+2,
+10,
+5,
+7);
+
+INSERT INTO `media_aluno`.`tb_notas_aluno`
+(`cd_aluno`,
+`nr_nota1`,
+`nr_nota2`,
+`nr_nota3`)
+VALUES(
+3,
+5,
+5,
+3);
+
+
+
+select	nm_aluno,
+		ds_obs,
+        nr_idade,
+        ds_serie
+from	tb_cadastro_aluno
+where	cd_aluno = 3;
+
+
+
+select	a.nm_aluno,
+		a.ds_obs,
+        a.nr_idade,
+        a.ds_serie,
+        f.nr_faltas
+from	tb_cadastro_aluno a,
+		tb_frequencia f
+where	a.cd_aluno = 3
+and		f.cd_aluno =3;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
