@@ -1,0 +1,144 @@
+
+
+Tabelas: tb_nome_tabela
+
+Campos: 
+	Numericos: nr_campo
+	Descricao: ds_campo
+	Data: dt_campo
+	Nome: nm_campo
+	Codigo(ID): cd_campo
+	Boolean: bl_campo (True ou False) ( 0 ou 1)
+
+
+
+
+1 - Crie um select que junte as tabelas tb_cadastro_aluno e tb_notas_aluno
+
+select	a.nm_aluno,
+	a.ds_obs,
+        a.nr_idade,
+        a.ds_serie,
+        n.nr_nota1 as Nota_1,
+	n.nr_nota2 as Nota_2,
+	n.nr_nota3 as Nota_3
+       
+from	tb_cadastro_aluno a,
+	tb_notas_aluno n
+where	a.cd_aluno = 3
+and	n.cd_aluno =3;
+
+
+2 - Crie um select que junte as 3 tabelas
+
+
+select	a.nm_aluno,
+	a.ds_obs,
+        a.nr_idade,
+        a.ds_serie,
+        n.nr_nota1 as Nota_1,
+	n.nr_nota2 as Nota_2,
+	n.nr_nota3 as Nota_3,
+        f.nr_faltas
+from	tb_cadastro_aluno a,
+	tb_notas_aluno n,
+        tb_frequencia f
+where	a.cd_aluno = 3
+and	n.cd_aluno =3
+and	f.cd_aluno =3;
+
+
+
+3 - 	# Criar 2 novas Tabelas
+
+		- tb_media_aluno
+			cd_media INT PK AI NN
+			cd_aluno INT NN
+			nr_media INT NN
+
+		- tb_recuperacao
+			cd_recuperacao INT PK AI NN
+			cd_aluno INT NN
+			nr_nota_faltante INT NN
+
+	#Prencher estas tabelas com Dados
+
+	# Criar um select e uma view ligando as duas tabelas
+		 com a tabela tb_cadastro_aluno
+	
+	# Criar um select que traga apenas alunos qe não estão em recuperação
+
+CREATE TABLE `media_aluno`.`tb_media_aluno` (
+  `cd_media` INT NOT NULL AUTO_INCREMENT,
+  `cd_aluno` INT NOT NULL,
+  `nr_media` INT NOT NULL,
+  PRIMARY KEY (`cd_media`));
+
+
+CREATE TABLE `media_aluno`.`tb_recuperacao` (
+  `cd_recuperacao` INT NOT NULL AUTO_INCREMENT,
+  `cd_aluno` INT NOT NULL,
+  `nr_nota_faltante` INT NOT NULL,
+  PRIMARY KEY (`cd_recuperacao`));
+
+INSERT INTO `media_aluno`.`tb_media_aluno`
+(`cd_aluno`,
+`nr_media`)
+VALUES 	(1, 10),
+	(3, 4);
+
+
+INSERT INTO `media_aluno`.`tb_recuperacao`
+(
+`cd_aluno`,
+`nr_nota_faltante`)
+VALUES
+(3, 3);
+
+select	a.cd_aluno,
+		a.nm_aluno,
+        m.nr_media,
+        r.nr_nota_faltante
+from 	tb_cadastro_aluno a,
+		tb_media_aluno m,
+        tb_recuperacao r
+where 	a.cd_aluno = m.cd_aluno
+and		a.cd_aluno = r.cd_aluno
+
+USE `media_aluno`;
+CREATE  OR REPLACE VIEW `vm_aluno_recuperacao` AS
+
+select	a.cd_aluno,
+		a.nm_aluno,
+        m.nr_media,
+        r.nr_nota_faltante
+from 	tb_cadastro_aluno a,
+		tb_media_aluno m,
+        tb_recuperacao r
+where 	a.cd_aluno = m.cd_aluno
+and		a.cd_aluno = r.cd_aluno;
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
