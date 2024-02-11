@@ -1,0 +1,111 @@
+INSERT INTO `medias`.`tb_cadastro_aluno`
+(`nm_aluno`,
+`ds_obs`,
+`nr_idade`,
+`ds_serie`)
+VALUES
+('Walter Pasold', 	'Bom ALuno',     15,     'Quinta Serie'),
+('Antonio Nunes', 'Da um tapa no joelho', 40, 'Primeira Serie'),
+('Rpgerio do Inga', 'Sei la', 20, 'Oitava Serie'),
+('Douglas Francisco', 'Trombadinha', 30, 'QUarta Serie'),
+('Silvio Santos', 'Um Genio', 99, "Nãos precisa");
+
+select * from tb_cadastro_aluno;
+
+INSERT INTO `medias`.`tb_notas_aluno`
+(`cd_aluno`,
+`nr_nota1`,
+`nr_nota2`,
+`nr_nota3`)
+VALUES
+(4, 10,10,10),
+(5,  6,7,9),
+(6 , 7,8,6),
+(7, 1,4,3),
+(8, 6,7,9);
+
+select * from tb_notas_aluno;
+
+
+
+USE `medias`;
+DROP procedure IF EXISTS `sp_caucula_media`;
+
+DELIMITER $$
+USE `medias`$$
+CREATE PROCEDURE `sp_caucula_media` (nr_nota1 int, nr_nota2 int, nr_nota3 int, cd_aluno int)
+BEGIN
+
+INSERT INTO `medias`.`tb_media_aluno`
+(`cd_aluno`,
+`nr_media`)
+VALUES
+(cd_aluno,
+(nr_nota1+nr_nota2+nr_nota1)/3);
+
+END$$
+INSERT INTO `medias`.`tb_cadastro_aluno`
+(`nm_aluno`,
+`ds_obs`,
+`nr_idade`,
+`ds_serie`)
+VALUES
+('Walter Pasold', 	'Bom ALuno',     15,     'Quinta Serie'),
+('Antonio Nunes', 'Da um tapa no joelho', 40, 'Primeira Serie'),
+('Rpgerio do Inga', 'Sei la', 20, 'Oitava Serie'),
+('Douglas Francisco', 'Trombadinha', 30, 'QUarta Serie'),
+('Silvio Santos', 'Um Genio', 99, "Nãos precisa");
+
+select * from tb_cadastro_aluno;
+
+INSERT INTO `medias`.`tb_notas_aluno`
+(`cd_aluno`,
+`nr_nota1`,
+`nr_nota2`,
+`nr_nota3`)
+VALUES
+(4, 10,10,10),
+(5,  6,7,9),
+(6 , 7,8,6),
+(7, 1,4,3),
+(8, 6,7,9);
+
+select * from tb_notas_aluno;
+
+
+
+USE `medias`;
+DROP procedure IF EXISTS `sp_caucula_media`;
+
+DELIMITER $$
+USE `medias`$$
+CREATE PROCEDURE `sp_caucula_media` (nr_nota1 int, nr_nota2 int, nr_nota3 int, cd_aluno int)
+BEGIN
+
+INSERT INTO `medias`.`tb_media_aluno`
+(`cd_aluno`,
+`nr_media`)
+VALUES
+(cd_aluno,
+(nr_nota1+nr_nota2+nr_nota1)/3);
+
+END$$
+
+DELIMITER ;
+
+
+delimiter $
+
+Create Trigger trg_calcula_media after insert
+on tb_notas_aluno
+for each row
+begin
+Call sp_caucula_media(new.nr_nota1, new.nr_nota2, new.nr_nota3, new.cd_aluno);
+end$
+
+delimiter;
+
+ 
+
+
+
